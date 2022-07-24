@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 // function prototype
-void quick_sort(int *a, int left, int right);
+void quick_sort(int *vet, int start, int end);
  
 //main
 int main()
@@ -27,33 +27,33 @@ int main()
 }
  
 //quick sort function
-void quick_sort(int *vet, int left, int right) {
-    int i, j, pivot, aux;
+void quick_sort(int *vet, int start, int end) {
+    int left, right, pivot, aux;
      
-    i = left;
-    j = right;
-    pivot = vet[(left + right) / 2];
+    left = start;
+    right = end;
+    pivot = vet[(start + end) / 2];
      
-    while(i <= j) {
-        while(vet[i] < pivot && i < right) {
-            i++;
+    while(left <= right) {
+        while(vet[left] < pivot && left < end) {
+            left++;
         }
-        while(vet[j] > pivot && j > left) {
-            j--;
+        while(vet[right] > pivot && right > start) {
+            right--;
         }
-        if(i <= j) {
-            aux = vet[i];
-            vet[i] = vet[j];
-            vet[j] = aux;
-            i++;
-            j--;
+        if(left <= right) {
+            aux = vet[left];
+            vet[left] = vet[right];
+            vet[right] = aux;
+            left++;
+            right--;
         }
     }
      
-    if(j > left) {
-        quick_sort(vet, left, j);
+    if(right > start) {
+        quick_sort(vet, start, right);
     }
-    if(i < right) {
-        quick_sort(vet, i, right);
+    if(left < end) {
+        quick_sort(vet, left, end);
     }
 }
