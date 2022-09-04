@@ -22,7 +22,7 @@ int main(){
   char method_name[8];
 
   scanf("%s", method_name);
-  method_name[strcspn(method_name, "\n")] = 0; // returns all values ​​before '/n'
+  method_name[strcspn(method_name, "\n")] = 0; // returns all values ​​before '/n' -> it's like var--;
 
   scanf("%d", &ARRAY_SIZE);
   int *array = malloc(ARRAY_SIZE*sizeof(int));
@@ -38,7 +38,7 @@ int main(){
 }
 
 void selecao(int *array, int ARRAY_SIZE){
-  int lesser_value;
+  int lesser_value; //selection always considers the first value like the lesser value
 
   for(int i = 0; i < ARRAY_SIZE; i++){
       lesser_value = i;
@@ -76,23 +76,22 @@ void bolha(int *array, int ARRAY_SIZE) {
                 previous_modification = j + 1;
                 printf("T %d %d\n", j, previous_modification);
                 int aux = array[j];
-                array[j] = array[j+1];
+                array[j] = array[j + 1];
                 array[j + 1] = aux;
             }
       }
 
         if(previous_modification == array_end){
           break;
-          } //without this works either, but is a improvement, avoids unnecessary comparisons
+          }//without this works either, but is a improvement but it avoids unnecessary comparisons
   }
 
   for(int i = 0; i < ARRAY_SIZE; i++){
       printf("%d ", array[i]);
   }
-
 }
 
-void choose_method(int *array, char method_name[], int ARRAY_SIZE){
+void choose_method(int *array, char method_name[8], int ARRAY_SIZE){
 
     if(strcmp(method_name, "bolha") == 0){
         bolha(array, ARRAY_SIZE);
