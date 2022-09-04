@@ -1,20 +1,30 @@
 #include <stdio.h>
-#define MAX 4
+#include <stdlib.h>
+#include <time.h>
+#define MAX 100000
 
 void swap(int *x, int *y);
-void bubbleSort(int arr[], int ARRAY_SIZE);
+void BubbleSort(int *arr, int ARRAY_SIZE);
 void print_array(int *arr, int ARRAY_SIZE);
 
 int main(){
 
   int *arr = malloc(MAX*sizeof(int));
+  clock_t begin = clock();
+  srand(time(NULL));
 
   for(int i = 0; i < MAX; i++){
-    scanf("%d", &arr[i]);
+    arr[i] = (rand() % 1000);
   }
 
-  bubbleSort(arr, MAX);
+  BubbleSort(arr, MAX);
 
+  clock_t end = clock();
+  double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+  printf("\n\n%.2lf\n", time_spent);
+
+  free(arr);
   return 0;
 }
 
@@ -24,31 +34,34 @@ void swap(int *x, int *y){
   *y = swap_terms;
 }
 
-void print_array(int arr[], int ARRAY_SIZE){
+void print_array(int *arr, int ARRAY_SIZE){
 
     for(int i = 0; i < ARRAY_SIZE; i++) {
-      printf ("%d ", arr[i]);
+      printf ("%d ", *(arr +i));
   }
   printf ("\n");
 }
 
-void bubbleSort(int *arr, int ARRAY_SIZE){
-  int sentinel, previous_modification;
+void BubbleSort(int *arr, int ARRAY_SIZE) {
 
-  for (int i = 0; i < ARRAY_SIZE - 1; i++){
-    sentinel = 0;
-    for (int j = 0; j < ARRAY_SIZE - 1 - i; j++){
-      if (arr[j] > arr[j + 1]){
-        previous_modification = j + 1;
-        printf("T %d %d\n", j, previous_modification);
-        swap(&arr[j], &arr[j + 1]);
-        sentinel = 1;
+  int previous_modification = ARRAY_SIZE;
+  int array_end;
+
+  for(int i = 0; i < ARRAY_SIZE; i++){
+      array_end = previous_modification;
+        for(int j = 0; j < array_end - 1; j++){
+            //printf("C %d %d\n", j, j + 1);
+
+            if(arr[j] > arr[j + 1]){
+                previous_modification = j + 1;
+                //printf("T %d %d\n", j, previous_modification);
+                swap(&arr[j], &arr[j + 1]);
+            }
       }
-    }
-    // if sentinel doesn't exist after ending iteration, break
-    if (!sentinel){
-      break;
-    }
+
+        if(previous_modification == array_end){
+          break;
+          }//without this works either, but is a improvement but it avoids unnecessary comparisons
+      }
+    print_array(arr, ARRAY_SIZE);
   }
-  print_array(arr, ARRAY_SIZE);
-}
