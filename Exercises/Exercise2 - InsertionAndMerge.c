@@ -7,17 +7,16 @@ void merge_logic(int *array, int array1_start, int mid, int array2_start, int ar
 void merge(int *array, int array_start, int array_end, int *aux_vet, int *comparisons, int *changes);
 void mergesort(int *array, int array_size);
 void insertion_sort(int *arr, int array_size);
-void free_matrix(int **matrix, int matrix_size);
+void free_matrix(int **matrix, int rows);
 
 int main(){
 
     int Q, *N, **arrays_matrix; // respectivly: arrays amount, arrays size and matrix of arrays
-    int *aux_array;
+    int *aux_array; //for mergesort
 
     scanf("%d", &Q);
-
-    N = (int*)malloc(Q*sizeof(int));
-    arrays_matrix = (int**)malloc(Q*sizeof(int*));
+    N = (int *) malloc(Q*sizeof(int));
+    arrays_matrix = (int**) malloc(Q*sizeof(int*));
 
     if(N == NULL || arrays_matrix == NULL){
         return SERVICE_UNAVAILABLE;
@@ -25,12 +24,10 @@ int main(){
 
     for(int i = 0; i < Q; i++){
         scanf("%d", &N[i]);
-    }//len(arrays)
+    }
 
     for(int i = 0; i < Q; i++){
-        //initializing arrays
         arrays_matrix[i] = (int*)malloc(N[i]*sizeof(int));
-        aux_array = (int *) malloc(N[i]*sizeof(int)); //aux_array necessary for mergesort
         if(arrays_matrix[i] == NULL){
             return SERVICE_UNAVAILABLE;
         }
@@ -44,16 +41,18 @@ int main(){
 
     //### STARTING LOOP OF SORTING LOGIC ### //
     for(int i = 0; i < Q; i++){
+        aux_array = (int *) malloc(N[i]*sizeof(int)); // aux array -> necessary for mergesort
         for(int j = 0; j < N[i]; j++){
             aux_array[j] = arrays_matrix[i][j];
         }
+
         insertion_sort(arrays_matrix[i], N[i]);
         mergesort(aux_array, N[i]);
+        free(aux_array); // necessary to do here, else the arrays doesnt will be resetted (trust me)
     }
 
-    free_matrix(aux_array, N);
-    free_matrix(arrays_matrix, N);
     free(N);
+    free_matrix(arrays_matrix, Q);
 
   return 0;
 }
@@ -139,14 +138,9 @@ void insertion_sort(int *arr, int array_size){
 
 void free_matrix(int **matrix, int rows){
 
-    if (matrix == NULL){
-      exit(SERVICE_UNAVAILABLE);
+    for(int i = 0; i < rows; i++){
+        free(matrix[i]);
     }
-
-    for (int i = 0;  i < matrix; i++) {
-      free (matrix[i]);  
-    }
-
-    free(matrix);              
-    matrix = NULL;                 
+    free(matrix);
+    matrix = NULL;
 }
