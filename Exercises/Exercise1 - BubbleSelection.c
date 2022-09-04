@@ -14,6 +14,8 @@
 //sorting methods (O(n^2)) headers
 void bolha(int *arr, int ARRAY_SIZE);
 void selecao(int *arr, int ARRAY_SIZE);
+
+//auxiliar functions
 void choose_method(int *arr, char method_name[8], int ARRAY_SIZE);
 void swap(int *x, int *y);
 void print_array(int *arr, int ARRAY_SIZE);
@@ -23,10 +25,11 @@ int main(){
   int ARRAY_SIZE;
   char method_name[8];
 
+  setbuf(stdin, NULL); 
+  
   scanf("%s", method_name);
-  method_name[strcspn(method_name, "\n")] = 0; // returns all values ​​before '/n' -> it's like var--;
-
   scanf("%d", &ARRAY_SIZE);
+
   int *arr = malloc(ARRAY_SIZE*sizeof(int));
 
   for(int i = 0; i < ARRAY_SIZE; i++){
@@ -60,14 +63,13 @@ void selecao(int *arr, int ARRAY_SIZE){
 
 void bolha(int *arr, int ARRAY_SIZE) {
 
-  int previous_modification = ARRAY_SIZE;
+  int previous_modification = ARRAY_SIZE; //work as a sentinel
   int array_end;
 
   for(int i = 0; i < ARRAY_SIZE; i++){
       array_end = previous_modification;
         for(int j = 0; j < array_end - 1; j++){
             printf("C %d %d\n", j, j + 1);
-
             if(arr[j] > arr[j + 1]){
                 previous_modification = j + 1;
                 printf("T %d %d\n", j, previous_modification);
