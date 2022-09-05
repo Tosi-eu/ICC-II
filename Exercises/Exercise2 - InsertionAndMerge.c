@@ -61,8 +61,8 @@ void merge_logic(int *array, int array1_start, int mid, int array2_start, int ar
     int indexes_array1 = array1_start, indexes_array2 = array2_start, aux_array_indexes = 0;
 
     while (indexes_array1 <= mid && indexes_array2 <= array2_end){
-        (*comparisons) += 1;
-        (*changes) += 1;
+        (*comparisons)++;
+        (*changes)++;
 
         if(array[indexes_array1] <= array[indexes_array2]){
             aux_vet[aux_array_indexes++] = array[indexes_array1++];
@@ -77,13 +77,13 @@ void merge_logic(int *array, int array1_start, int mid, int array2_start, int ar
     }
 
     while(indexes_array2 <= array2_end){
-        (*changes) += 1;
+        (*changes)++;
         aux_vet[aux_array_indexes++] = array[indexes_array2++];
     }
 
     aux_array_indexes = 0; //resetting variable at the final for join the splitted arrays
     for (int i = array1_start; i <= array2_end; i++, aux_array_indexes++){
-        (*changes) += 1; //if necessary while joining array1 in array2
+        (*changes)++; //if necessary while joining array1 in array2
         array[i] = aux_vet[aux_array_indexes];
     }
 }
@@ -94,7 +94,7 @@ void merge(int *array, int array_start, int array_end, int *aux_vet, int *compar
     if(array_start >= array_end){
         return;
     }else{
-        mid = (array_start + array_end) / 2;   
+        mid = floor((array_start + array_end) / 2);   
         merge(array, array_start, mid, aux_vet, comparisons, changes); //start to mid -> first array
         merge(array, mid + 1, array_end, aux_vet, comparisons, changes); // mid + 1 to end -> second array
         merge_logic(array, array_start, mid, mid + 1, array_end, aux_vet, comparisons, changes); //group all and merge

@@ -33,19 +33,22 @@ void heapify(int *arr, int ARRAY_SIZE, int i){
     int first_son = 2 * i + 1;
     int second_son = 2 * i + 2;
   
-    if(first_son < ARRAY_SIZE && arr[first_son] > arr[father])
+    if(first_son < ARRAY_SIZE && arr[first_son] > arr[father]){
+      printf("Troca pai e 1 filho %d %d\n", father, first_son);
       father = first_son;
+    }
   
-    if(second_son < ARRAY_SIZE && arr[second_son] > arr[father])
+    if(second_son < ARRAY_SIZE && arr[second_son] > arr[father]){
+      printf("Troca pai e 2 filho %d %d\n", father, second_son);
       father = second_son;
-  
+    }
     // if root isn't the father, then continue
     if (father != i) {
-      printf("T %d %d\n", i, father);
+      printf("Troca pai para ser o maior %d %d\n", i, father);
       swap(&arr[i], &arr[father]);
       heapify(arr, ARRAY_SIZE, father);
     }else{
-      printf("C %d %d\n", i, father);
+      printf("%d %d\n", i, father);
     }
   }
 
@@ -55,9 +58,8 @@ void heapSort(int *arr, int ARRAY_SIZE){
       heapify(arr, ARRAY_SIZE, i);
 
     for(int i = ARRAY_SIZE - 1; i >= 0; i--){
+      printf("Ordenando e formando nova heap 0 %d\n", i);
       swap(&arr[0], &arr[i]);
-  
-      // last call to sort root terms, for getting the father between themselves
       heapify(arr, i, 0);
     }
     print_array(arr, ARRAY_SIZE);

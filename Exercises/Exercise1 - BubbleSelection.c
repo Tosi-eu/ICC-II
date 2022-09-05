@@ -26,7 +26,7 @@ int main(){
   char method_name[8];
 
   setbuf(stdin, NULL); 
-  
+
   scanf("%s", method_name);
   scanf("%d", &ARRAY_SIZE);
 
