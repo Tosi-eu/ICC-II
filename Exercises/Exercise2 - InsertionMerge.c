@@ -60,6 +60,11 @@ int main(){
 void merge_logic(int *array, int array1_start, int mid, int array2_start, int array2_end, int *aux_vet, int *comparisons, int *changes){
     int indexes_array1 = array1_start, indexes_array2 = array2_start, aux_array_indexes = 0;
 
+
+    if(array1_start >= array2_end){
+        exit(SERVICE_UNAVAILABLE);
+    }
+    
     while (indexes_array1 <= mid && indexes_array2 <= array2_end){
         (*comparisons)++;
         (*changes)++;
