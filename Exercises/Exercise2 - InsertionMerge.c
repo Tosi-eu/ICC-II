@@ -87,7 +87,7 @@ void merge_logic(int *array, int array1_start, int mid, int array2_start, int ar
     }
 
     aux_array_indexes = 0; //resetting variable at the final for join the splitted arrays
-    for (int i = array1_start; i <= array2_end; i++, aux_array_indexes++){
+    for(int i = array1_start; i <= array2_end; i++, aux_array_indexes++){
         (*changes)++; //if necessary while joining array1 in array2
         array[i] = aux_vet[aux_array_indexes];
     }
@@ -107,6 +107,7 @@ void merge(int *array, int array_start, int array_end, int *aux_vet, int *compar
 }
 
 void mergesort(int *array, int array_size){
+    
     int *aux_vet = (int *)malloc(array_size*sizeof(int)), change = 0, compare = 0;
 
     if(aux_vet == NULL){
