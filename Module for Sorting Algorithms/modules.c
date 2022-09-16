@@ -12,7 +12,7 @@ void BubbleSort(int *arr, int ARRAY_SIZE){
         for(int j = 0; j < array_end - 1; j++){
             //printf("C %d %d\n", j, j + 1);
             if(arr[j] > arr[j + 1]){
-                //previous_modification = j + 1;
+                previous_modification = j + 1;
                 //printf("T %d %d\n", j, previous_modification);
                 swap(&arr[j], &arr[j + 1]);
             }
@@ -27,7 +27,7 @@ void BubbleSort(int *arr, int ARRAY_SIZE){
 
 void insertion_sort(int *arr, int ARRAY_SIZE){
   
- int j, aux, changes = 0, comparisons = 0;
+ int j, aux; //changes = 0, comparisons = 0;
   
   for(int i = 1; i < ARRAY_SIZE; i++){
     //changes++;
@@ -76,32 +76,23 @@ void merge_logic(int *array, int array1_start, int mid, int array2_start, int ar
         //(*changes)++;
 
         if(array[indexes_array1] <= array[indexes_array2]){
-            aux_vet[aux_array_indexes] = array[indexes_array1];
-            aux_array_indexes++;
-            indexes_array1++;
+            aux_vet[aux_array_indexes++] = array[indexes_array1++];
         }else{
             if(!(array[indexes_array1] <= array[indexes_array2])){
-              aux_vet[aux_array_indexes] = array[indexes_array2];
-              aux_array_indexes++;
-              indexes_array2++;
+              aux_vet[aux_array_indexes++] = array[indexes_array2++];
           }
        }
     }
 
     while(indexes_array1 <= mid){
         //(*changes)++;
-
-        aux_vet[aux_array_indexes] = array[indexes_array1];
-        aux_array_indexes++;
-        indexes_array1++;  
+        aux_vet[aux_array_indexes++] = array[indexes_array1++];
     }
 
     while(indexes_array2 <= array2_end){
         //(*changes)++;
 
-        aux_vet[aux_array_indexes] = array[indexes_array2];
-        aux_array_indexes++;
-        indexes_array2++;
+        aux_vet[aux_array_indexes++] = array[indexes_array2++];
     }
 
     aux_array_indexes = 0; //resetting variable at the final for join the splitted arrays
@@ -200,3 +191,23 @@ void heapSort(int *arr, int ARRAY_SIZE){
     }
   }
 }
+//AUX FUNCS
+void swap(int *a, int *b) {
+  int aux = *a;
+     *a = *b;
+     *b = aux;
+  }
+
+int read_array(int *arr, int ARRAY_SIZE){
+  for(int i = 0; i < ARRAY_SIZE; i++){
+    scanf("%d", &arr[i]);
+  }
+  return *arr;
+}
+
+void print_array(int *arr, int ARRAY_SIZE){
+  for(int i = 0; i < ARRAY_SIZE; i++){
+    printf("%d ", arr[i]);
+  }
+}
+
