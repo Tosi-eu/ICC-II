@@ -69,7 +69,7 @@ void mergesort(int *array, int array_size){
     }
 
     merge(array, 0, array_size - 1, aux_vet, &compare, &change);
-    printf("M %d %d %d", array_size, change, compare);
+    //printf("M %d %d %d", array_size, change, compare);
 
     free(aux_vet);
 }

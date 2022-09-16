@@ -38,15 +38,15 @@ void selection_sort (int *arr, int ARRAY_SIZE){
   for (i = 0; i < (ARRAY_SIZE - 1); i++) {
     min = i; /* min = first number not sorted yet */
     for (subsequent_value = i + 1; subsequent_value < ARRAY_SIZE; subsequent_value++) {
-      printf("C %d %d\n", min, subsequent_value);
+      //printf("C %d %d\n", min, subsequent_value);
       if (arr[subsequent_value] < arr[min]) {
            min = subsequent_value; /* if number is lesser than the adjacent, the lesser turns into min*/
       }
     }
     if (i != min) { /* if min are different of the last number not sorted, swap him */
-      printf("T %d %d\n", i, min);
+      //printf("T %d %d\n", i, min);
       swap(&arr[i], &arr[min]);
     }
   }
-  print_array(arr, ARRAY_SIZE);
+  //print_array(arr, ARRAY_SIZE);
 }

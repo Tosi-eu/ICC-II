@@ -56,7 +56,7 @@ void BubbleSort(int *arr, int ARRAY_SIZE) {
         for(int j = 0; j < array_end - 1; j++){
             //printf("C %d %d\n", j, j + 1);
             if(arr[j] > arr[j + 1]){
-                previous_modification = j + 1;
+                //previous_modification = j + 1;
                 //printf("T %d %d\n", j, previous_modification);
                 swap(&arr[j], &arr[j + 1]);
             }
@@ -66,5 +66,5 @@ void BubbleSort(int *arr, int ARRAY_SIZE) {
           break;
           }//without this works either, but is a improvement but it avoids unnecessary comparisons
       }
-    print_array(arr, ARRAY_SIZE);
+    //print_array(arr, ARRAY_SIZE);
   }
