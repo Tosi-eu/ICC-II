@@ -100,7 +100,7 @@ int main(){
 
     case 7:
       print_array(aux_array, size);
-      quick_sort(aux_array, 0, size);
+      quick_sort(aux_array, 0, size-1);
       print_array(aux_array, size);
 
       end = clock();
