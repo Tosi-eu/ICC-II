@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "modules.h"
 
-void BubbleSort(int *arr, int ARRAY_SIZE){
+void bubblesort(int *arr, int ARRAY_SIZE){
 
   int previous_modification = ARRAY_SIZE;
   int array_end;
@@ -64,6 +64,37 @@ void selection_sort (int *arr, int ARRAY_SIZE){
     }
   }
   //print_array(arr, ARRAY_SIZE);
+}
+
+void quick_sort(int *arr, int start, int end){
+  int left, right, mid, aux;
+     
+    left = start;
+    right = end;
+    mid = arr[(start + end) / 2];
+     
+    while(left <= right){
+        while(arr[left] < mid && left < end) {
+            left++;
+        }
+        while(arr[right] > mid && right > start) {
+            right--;
+        }
+        if(left <= right) {
+            aux = arr[left];
+            arr[left] = arr[right];
+            arr[right] = aux;
+            left++;
+            right--;
+        }
+    }
+     
+    if(right > start) {
+        quick_sort(arr, start, right);
+    }
+    if(left < end) {
+        quick_sort(arr, left, end);
+    }
 }
 
 //N*LOG(N)
@@ -160,7 +191,7 @@ void heapify(int *arr, int ARRAY_SIZE, int i){
       //printf("Father is the biggest, just continue %d %d\n", i, father);
   }
 
-void heapSort(int *arr, int ARRAY_SIZE){
+void heapsort(int *arr, int ARRAY_SIZE){
 
     for (int i = ARRAY_SIZE / 2 - 1; i >= 0; i--)
       heapify(arr, ARRAY_SIZE, i);
@@ -209,5 +240,10 @@ void print_array(int *arr, int ARRAY_SIZE){
   for(int i = 0; i < ARRAY_SIZE; i++){
     printf("%d ", arr[i]);
   }
+  printf("\n");
+}
+
+void menu(){
+  printf("1 - Bubble sort\n2 - Insertion sort\n3 - Selection sort\n4 - Merge sort\n5- Heapsort\n6- Shell sort\n7 - Quick sort\n");
 }
 

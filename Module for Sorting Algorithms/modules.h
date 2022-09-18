@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #ifndef MODULES_H
 #define MODULES_H
 
 //QUADRATICS
-void BubbleSort(int *arr, int ARRAY_SIZE);
+void bubblesort(int *arr, int ARRAY_SIZE);
 void insertion_sort(int *arr, int ARRAY_SIZE);
 void selection_sort(int *arr, int ARRAY_SIZE);
+void quick_sort(int *arr, int start, int end);
 
 //N LOG N
 /*
@@ -22,13 +24,14 @@ void merge(int *array, int array_start, int array_end, int *aux_vet);
 
 void mergesort(int *array, int ARRAY_SIZE);
 void heapify(int *arr, int ARRAY_SIZE, int i);
-void heapSort(int *arr, int ARRAY_SIZE);
+void heapsort(int *arr, int ARRAY_SIZE);
 
 //O(n^(3/2))
 void shell_sort(int *arr, int ARRAY_SIZE);
 
 //AUX FUNCS
 void swap(int *x, int *y);
+void menu();
 void print_array(int *arr, int ARRAY_SIZE);
 int read_array(int *arr, int ARRAY_SIZE);
 

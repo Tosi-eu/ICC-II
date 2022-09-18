@@ -10,7 +10,7 @@ int main(){
   int *arr = malloc(size*sizeof(int));
 
   read_array(arr, size);
-  shell_sort(arr, size);
+  shell_sort2(arr, size);
   print_array(arr, size);
 
   free(arr);
